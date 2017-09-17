@@ -1,1 +1,1 @@
-# bob-the-blogger
+# Draft for [Bob the Developer](https://www.bobthedeveloper.io)
