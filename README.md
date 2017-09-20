@@ -7,6 +7,7 @@
   - Why Learn RxSwift (Sept 20th, 2017)
   - Getting started with Observables
   - Getting started with operators
+  - Getting started with disposables
   - Getting started with subjects
   - Getting started with RxCocoa
   - Getting started with schedulers
