@@ -84,22 +84,22 @@ Let there be more than one subscriber to the YouTube channel.
 
 ```swift
 // Subscriber One
-reactiveObject.subscribe(onNext: { print($0) })
+reactiveObject.subscribe(onNext: { print("Sub 1: " +  $0) })
 
 // Subscriber Two
-reactiveObject.subscribe(onNext: { print($0) })
+reactiveObject.subscribe(onNext: { print("Sub 2: " + $0) })
 ```
 
 Now, each subscriber receive new data/event from the channel.
 
 ```swift
-// print("1")
-// print("2")
-// print("3")
+// print("Sub 1: 1")
+// print("Sub 1: 2")
+// print("Sub 1: 3")
 
-// print("1")
-// print("2")
-// print("3")
+// print("Sub 2: 1")
+// print("Sub 2: 2")
+// print("Sub 2: 3")
 ```
 
 > **Note:** I'm not going to talk about memory management yet for better understanding. Will definitely cover soon.
@@ -113,4 +113,6 @@ The process of emitting event/data using `observable` is analogous to a `for-in`
 ### Another Way to Create Observable
 However, you have a complete control of manipulating each stream of data and event you wish to emit by creating your own `observable`.
 
-In the `reactiveObject` example above, you were able to emit event when subscribed by using a built-in method called, `of`.
+In the `reactiveObject` example above, you were able to emit event when subscribed by using a built-in method called, `of`. You can also customize which event to emit in a whole different manner. Let's find out.
+
+### Create Observable
