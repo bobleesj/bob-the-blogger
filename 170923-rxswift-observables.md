@@ -116,3 +116,82 @@ However, you have a complete control of manipulating each stream of data and eve
 In the `reactiveObject` example above, you were able to emit event when subscribed by using a built-in method called, `of`. You can also customize which event to emit in a whole different manner. Let's find out.
 
 ### Create Observable
+
+```swift
+let youtube = Observable<String>.create { observer in
+  observer.on(.next("Wednesday Content"))
+  observer.on(.next("Saturday Content"))
+  return Disposables.create()
+}
+```
+
+> Just bear with me for a second with `Disposables`. It has to do with memory management.
+
+```swift
+youtube.subscribe { print($0) }
+// next(Wednesday Content)
+// next(Saturday Content)
+```
+
+```swift
+youtube
+ .subscribe { print($0) }
+ .dispose()
+```
+
+
+```swift
+let youtube = Observable<String>.create { observer in
+  observer.on(.next("Wednesday Content"))
+  observer.on(.next("Saturday Content"))
+  return Disposables.create()
+}
+```
+
+### Three Types of Event
+```swift
+let youtube = Observable<String>.create { observer in
+  observer.on(.next("Wednesday Content"))
+  observer.on(.completed)
+  observer.on(.next("Saturday Content"))
+  return Disposables.create()
+}
+```
+
+```swift
+youtube
+ .subscribe { print($0) }
+ .dispose()
+
+ // next(Wednesday Content)
+```
+
+### Disposables
+Quite hard to understand at first. 
+
+
+```swift
+enum YouTubeError: Error {
+  case serverError
+}
+```
+
+```swift
+let youtube = Observable<String>.create { observer in
+  observer.on(.next("Wednesday Content"))
+  observer.onError(YouTubeError.serverError)
+  observer.on(.next("Saturday Content"))
+  observer.on(.completed)
+  return Disposables.create()
+}
+```
+
+
+### Event Types
+```swift
+enum Event<Element>  {
+    case next(Element)      // next element of a sequence
+    case error(Swift.Error) // sequence failed with error
+    case completed          // sequence terminated successfully
+}
+```
